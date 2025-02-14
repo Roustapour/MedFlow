@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>فرم ارسال پیام/عکس/ویس</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f0f0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 0.8rem;
+      background: #2e86de;
+      border: none;
+      border-radius: 4px;
+      color: #ffffff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #21609b;
+    }
+
+    .note {
+      color: #555;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ارسال پیام / تصویر / صدا</h1>
+    <!-- 
+      نکته مهم:
+      حتماً action را با URL وب‌هوک n8n خودتان جایگزین کنید.
+      همچنین برای آپلود فایل باید از enctype="multipart/form-data" استفاده کنیم.
+    -->
+    <form action="https://YOUR_N8N_WEBHOOK_URL" method="POST" enctype="multipart/form-data">
+      
+      <!-- فیلد متن پیام -->
+      <label for="message">متن پیام:</label>
+      <textarea id="message" name="message" placeholder="پیام خود را بنویسید..."></textarea>
+      
+      <!-- فیلد آپلود عکس یا فایل صوتی -->
+      <label for="attachment">فایل (عکس یا ویس):</label>
+      <input 
+        type="file" 
+        id="attachment" 
+        name="attachment"
+        accept="image/*,audio/*"
+      />
+
+      <button type="submit">ارسال</button>
+      
+      <div class="note">
+        پس از ارسال، داده‌ها به گردش کار n8n ارسال می‌شود. لطفاً تا نمایش پاسخ صبر کنید.
+      </div>
+    </form>
+  </div>
+</body>
+</html>
